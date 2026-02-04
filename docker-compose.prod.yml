@@ -27,7 +27,7 @@ services:
       - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
-      GF_SERVER_ROOT_URL: https://sensors.davidpalazon.dev
+      GF_SERVER_ROOT_URL: https://sck.davidpalazon.dev
       GF_SERVER_SERVE_FROM_SUB_PATH: "false"
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
@@ -45,7 +45,7 @@ services:
       - dokploy-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sck-grafana.rule=Host(`sensors.davidpalazon.dev`)"
+      - "traefik.http.routers.sck-grafana.rule=Host(`sck.davidpalazon.dev`)"
       - "traefik.http.routers.sck-grafana.entrypoints=websecure"
       - "traefik.http.routers.sck-grafana.tls.certResolver=letsencrypt"
       - "traefik.http.services.sck-grafana.loadbalancer.server.port=3000"
