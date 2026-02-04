@@ -1,0 +1,76 @@
+services:
+  influxdb:
+    image: influxdb:2.7
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUXDB_PASSWORD}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUXDB_ORG:-sck}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUXDB_BUCKET:-sck_data}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUXDB_TOKEN}
+      DOCKER_INFLUXDB_INIT_RETENTION: 365d
+    healthcheck:
+      test: ["CMD", "influx", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dokploy-network
+
+  grafana:
+    image: grafana/grafana-oss:11.5.2
+    ports:
+      - 3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      GF_SERVER_ROOT_URL: https://sensors.davidpalazon.dev
+      GF_SERVER_SERVE_FROM_SUB_PATH: "false"
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_AUTH_DISABLE_LOGIN_FORM: "false"
+      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN}
+      INFLUXDB_ORG: ${INFLUXDB_ORG:-sck}
+      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET:-sck_data}
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sck-grafana.rule=Host(`sensors.davidpalazon.dev`)"
+      - "traefik.http.routers.sck-grafana.entrypoints=websecure"
+      - "traefik.http.routers.sck-grafana.tls.certResolver=letsencrypt"
+      - "traefik.http.services.sck-grafana.loadbalancer.server.port=3000"
+
+  collector:
+    build: ./collector
+    environment:
+      SCK_DEVICE_ID: ${SCK_DEVICE_ID:-19396}
+      POLL_INTERVAL_SECONDS: ${POLL_INTERVAL_SECONDS:-60}
+      INFLUXDB_URL: http://influxdb:8086
+      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN}
+      INFLUXDB_ORG: ${INFLUXDB_ORG:-sck}
+      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET:-sck_data}
+      LOG_LEVEL: ${LOG_LEVEL:-WARNING}
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - dokploy-network
+
+volumes:
+  influxdb-data:
+  grafana-data:
+
+networks:
+  dokploy-network:
+    external: true

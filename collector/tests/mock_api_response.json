@@ -1,0 +1,168 @@
+{
+  "id": 19396,
+  "uuid": "test-uuid-1234",
+  "name": "DPPAmbNet",
+  "description": "Smart Citizen Kit",
+  "state": "has_published",
+  "last_reading_at": "2026-02-04T17:00:47Z",
+  "data": {
+    "sensors": [
+      {
+        "id": 55,
+        "name": "Sensirion SHT31 - Temperature",
+        "description": "Temperature",
+        "unit": "ºC",
+        "value": 19.61,
+        "prev_value": 19.55,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 1, "name": "Air Temperature"}
+      },
+      {
+        "id": 56,
+        "name": "Sensirion SHT31 - Humidity",
+        "description": "Humidity",
+        "unit": "%",
+        "value": 70.44,
+        "prev_value": 70.12,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 2, "name": "Relative Humidity"}
+      },
+      {
+        "id": 53,
+        "name": "TDK ICS43432 - Noise Level A weighting",
+        "description": "I2S Digital Mems Microphone",
+        "unit": "dBA",
+        "value": 47.49,
+        "prev_value": 46.80,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 3, "name": "Noise Level"}
+      },
+      {
+        "id": 14,
+        "name": "ROHM - BH1730FVC",
+        "description": "Digital Ambient Light Sensor",
+        "unit": "lux",
+        "value": 12.0,
+        "prev_value": 11.0,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 7, "name": "Light"}
+      },
+      {
+        "id": 58,
+        "name": "NXP MPL3115A2 - Barometric Pressure",
+        "description": "Digital Barometric Pressure Sensor",
+        "unit": "kPa",
+        "value": 99.71,
+        "prev_value": 99.68,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 25, "name": "Barometric Pressure"}
+      },
+      {
+        "id": 214,
+        "name": "AMS AS7731 - UVA",
+        "description": "AMS AS7731 UVA Channel",
+        "unit": "uW/cm²",
+        "value": 0.08,
+        "prev_value": 0.07,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 50, "name": "UVA"}
+      },
+      {
+        "id": 215,
+        "name": "AMS AS7731 - UVB",
+        "description": "AMS AS7731 UVB Channel",
+        "unit": "uW/cm²",
+        "value": 0.1,
+        "prev_value": 0.09,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 51, "name": "UVB"}
+      },
+      {
+        "id": 216,
+        "name": "AMS AS7731 - UVC",
+        "description": "AMS AS7731 UVC Channel",
+        "unit": "uW/cm²",
+        "value": 0.05,
+        "prev_value": 0.04,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 52, "name": "UVC"}
+      },
+      {
+        "id": 193,
+        "name": "Sensirion SEN5X - PM1",
+        "description": "Particulate Matter PM1",
+        "unit": "ug/m³",
+        "value": 3.2,
+        "prev_value": 3.0,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 26, "name": "PM1"}
+      },
+      {
+        "id": 194,
+        "name": "Sensirion SEN5X - PM2.5",
+        "description": "Particulate Matter PM2.5",
+        "unit": "ug/m³",
+        "value": 5.1,
+        "prev_value": 4.8,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 27, "name": "PM2.5"}
+      },
+      {
+        "id": 195,
+        "name": "Sensirion SEN5X - PM4.0",
+        "description": "Particulate Matter PM4.0",
+        "unit": "ug/m³",
+        "value": 5.5,
+        "prev_value": 5.2,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 28, "name": "PM4.0"}
+      },
+      {
+        "id": 196,
+        "name": "Sensirion SEN5X - PM10",
+        "description": "Particulate Matter PM10",
+        "unit": "ug/m³",
+        "value": 5.8,
+        "prev_value": 5.4,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 13, "name": "PM10"}
+      },
+      {
+        "id": 10,
+        "name": "Battery SCK",
+        "description": "Custom Circuit",
+        "unit": "%",
+        "value": 97.0,
+        "prev_value": 97.0,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 10, "name": "Battery"}
+      },
+      {
+        "id": 220,
+        "name": "Wi-Fi Antenna - RSSI",
+        "description": "RSSI from Wi-Fi antenna",
+        "unit": "dBm",
+        "value": -94.0,
+        "prev_value": -92.0,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 60, "name": "RSSI"}
+      },
+      {
+        "id": 9999,
+        "name": "Unknown Sensor",
+        "description": "Not in our map",
+        "unit": "X",
+        "value": 42.0,
+        "last_reading_at": "2026-02-04T17:00:47Z",
+        "measurement": {"id": 99, "name": "Unknown"}
+      }
+    ]
+  },
+  "location": {
+    "exposure": "outdoor",
+    "latitude": 37.86,
+    "longitude": -0.79,
+    "city": "Pilar de la Horadada",
+    "country_code": "ES"
+  }
+}
