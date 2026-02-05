@@ -14,7 +14,7 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 1,
+  "graphTooltip": 2,
   "links": [],
   "panels": [
     {
@@ -46,7 +46,7 @@
       "gridPos": { "h": 4, "w": 4, "x": 0, "y": 1 },
       "id": 1,
       "options": {
-        "colorMode": "background",
+        "colorMode": "background_solid",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -84,7 +84,7 @@
       "gridPos": { "h": 4, "w": 4, "x": 4, "y": 1 },
       "id": 2,
       "options": {
-        "colorMode": "background",
+        "colorMode": "background_solid",
         "graphMode": "area",
         "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }
       },
@@ -117,7 +117,7 @@
       "gridPos": { "h": 4, "w": 4, "x": 8, "y": 1 },
       "id": 3,
       "options": {
-        "colorMode": "background",
+        "colorMode": "background_solid",
         "graphMode": "area",
         "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }
       },
@@ -150,7 +150,7 @@
       "gridPos": { "h": 4, "w": 4, "x": 12, "y": 1 },
       "id": 4,
       "options": {
-        "colorMode": "background",
+        "colorMode": "background_solid",
         "graphMode": "area",
         "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }
       },
@@ -182,7 +182,7 @@
       "gridPos": { "h": 4, "w": 4, "x": 16, "y": 1 },
       "id": 5,
       "options": {
-        "colorMode": "background",
+        "colorMode": "background_solid",
         "graphMode": "area",
         "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }
       },
@@ -218,7 +218,7 @@
       "gridPos": { "h": 4, "w": 4, "x": 20, "y": 1 },
       "id": 6,
       "options": {
-        "colorMode": "background",
+        "colorMode": "background_solid",
         "graphMode": "area",
         "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }
       },
@@ -243,18 +243,18 @@
       "datasource": { "type": "influxdb", "uid": "" },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": { "mode": "fixed", "fixedColor": "#EF843C" },
           "custom": {
             "axisBorderShow": false,
             "axisCenteredZero": false,
-            "axisLabel": "°C",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "scheme",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
             "pointSize": 5,
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": 3600000
           },
           "unit": "celsius"
@@ -280,16 +280,16 @@
       "datasource": { "type": "influxdb", "uid": "" },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": { "mode": "fixed", "fixedColor": "#56A6DC" },
           "custom": {
-            "axisLabel": "%",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "scheme",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
             "pointSize": 5,
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": 3600000
           },
           "unit": "humidity"
@@ -322,16 +322,16 @@
       "datasource": { "type": "influxdb", "uid": "" },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": { "mode": "fixed", "fixedColor": "#E24D42" },
           "custom": {
-            "axisLabel": "µg/m³",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "scheme",
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
             "pointSize": 5,
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": 3600000,
             "thresholdsStyle": { "mode": "dashed" }
           },
@@ -366,16 +366,16 @@
       "datasource": { "type": "influxdb", "uid": "" },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": { "mode": "fixed", "fixedColor": "#FF7383" },
           "custom": {
-            "axisLabel": "µg/m³",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "scheme",
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
             "pointSize": 5,
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": 3600000,
             "thresholdsStyle": { "mode": "dashed" }
           },
@@ -412,20 +412,52 @@
         "defaults": {
           "color": { "mode": "palette-classic" },
           "custom": {
-            "axisLabel": "µg/m³",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 10,
+            "fillOpacity": 15,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
-            "lineWidth": 1,
+            "lineWidth": 2,
+            "showPoints": "never",
             "spanNulls": 3600000
           },
           "unit": "conμgm3"
-        }
+        },
+        "overrides": [
+          {
+            "matcher": { "id": "byRegexp", "options": "/pm_1(?!0)/" },
+            "properties": [
+              { "id": "displayName", "value": "PM 1" },
+              { "id": "color", "value": { "mode": "fixed", "fixedColor": "#73BF69" } }
+            ]
+          },
+          {
+            "matcher": { "id": "byRegexp", "options": "/pm_2_5/" },
+            "properties": [
+              { "id": "displayName", "value": "PM 2.5" },
+              { "id": "color", "value": { "mode": "fixed", "fixedColor": "#FADE2A" } }
+            ]
+          },
+          {
+            "matcher": { "id": "byRegexp", "options": "/pm_4/" },
+            "properties": [
+              { "id": "displayName", "value": "PM 4" },
+              { "id": "color", "value": { "mode": "fixed", "fixedColor": "#FF9830" } }
+            ]
+          },
+          {
+            "matcher": { "id": "byRegexp", "options": "/pm_10/" },
+            "properties": [
+              { "id": "displayName", "value": "PM 10" },
+              { "id": "color", "value": { "mode": "fixed", "fixedColor": "#E24D42" } }
+            ]
+          }
+        ]
       },
       "gridPos": { "h": 8, "w": 24, "x": 0, "y": 23 },
       "id": 22,
       "options": {
-        "legend": { "calcs": ["mean", "lastNotNull"], "displayMode": "table", "placement": "bottom" },
+        "legend": { "calcs": ["mean", "lastNotNull"], "displayMode": "table", "placement": "right" },
         "tooltip": { "mode": "multi", "sort": "desc" }
       },
       "title": "Todas las PM (1 / 2.5 / 4 / 10)",
@@ -449,14 +481,15 @@
       "datasource": { "type": "influxdb", "uid": "" },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": { "mode": "fixed", "fixedColor": "#B877D9" },
           "custom": {
-            "axisLabel": "dBA",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "scheme",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
+            "showPoints": "never",
             "spanNulls": 3600000,
             "thresholdsStyle": { "mode": "dashed" }
           },
@@ -490,14 +523,15 @@
       "datasource": { "type": "influxdb", "uid": "" },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": { "mode": "fixed", "fixedColor": "#FADE2A" },
           "custom": {
-            "axisLabel": "Lux",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "scheme",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
+            "showPoints": "never",
             "spanNulls": 3600000,
             "scaleDistribution": { "type": "log", "log": 2 }
           },
@@ -531,14 +565,15 @@
       "datasource": { "type": "influxdb", "uid": "" },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": { "mode": "fixed", "fixedColor": "#37872D" },
           "custom": {
-            "axisLabel": "kPa",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "scheme",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
+            "showPoints": "never",
             "spanNulls": 3600000
           },
           "unit": "pressurekpa"
@@ -565,16 +600,40 @@
         "defaults": {
           "color": { "mode": "palette-classic" },
           "custom": {
-            "axisLabel": "µW/cm²",
+            "axisLabel": "",
             "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "scheme",
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
+            "showPoints": "never",
             "spanNulls": 3600000
           },
           "unit": "µW/cm²"
-        }
+        },
+        "overrides": [
+          {
+            "matcher": { "id": "byRegexp", "options": "/uv_a/" },
+            "properties": [
+              { "id": "displayName", "value": "UV-A" },
+              { "id": "color", "value": { "mode": "fixed", "fixedColor": "#8F3BB8" } }
+            ]
+          },
+          {
+            "matcher": { "id": "byRegexp", "options": "/uv_b/" },
+            "properties": [
+              { "id": "displayName", "value": "UV-B" },
+              { "id": "color", "value": { "mode": "fixed", "fixedColor": "#3274D9" } }
+            ]
+          },
+          {
+            "matcher": { "id": "byRegexp", "options": "/uv_c/" },
+            "properties": [
+              { "id": "displayName", "value": "UV-C" },
+              { "id": "color", "value": { "mode": "fixed", "fixedColor": "#FF6EC7" } }
+            ]
+          }
+        ]
       },
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 41 },
       "id": 41,
@@ -622,7 +681,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
-        "showThresholdLabels": false,
+        "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
       "title": "Batería",
@@ -658,7 +717,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
-        "showThresholdLabels": false,
+        "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
       "title": "Señal WiFi (RSSI)",
@@ -689,7 +748,7 @@
       "gridPos": { "h": 6, "w": 8, "x": 16, "y": 50 },
       "id": 52,
       "options": {
-        "colorMode": "background",
+        "colorMode": "background_solid",
         "graphMode": "none",
         "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }
       },
@@ -697,7 +756,7 @@
       "type": "stat",
       "targets": [
         {
-          "query": "import \"date\"\nimport \"math\"\n\nfrom(bucket: \"sck_data\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"sck_sensors\")\n  |> filter(fn: (r) => r.sensor_name == \"temperature\")\n  |> filter(fn: (r) => r._field == \"value\")\n  |> last()\n  |> map(fn: (r) => ({r with _value: int(v: date.sub(d: now(), from: r._time)) / 1000000000}))",
+          "query": "from(bucket: \"sck_data\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"sck_sensors\")\n  |> filter(fn: (r) => r.sensor_name == \"temperature\")\n  |> filter(fn: (r) => r._field == \"value\")\n  |> last()\n  |> map(fn: (r) => ({r with _value: (int(v: now()) - int(v: r._time)) / 1000000000}))",
           "refId": "A"
         }
       ]
